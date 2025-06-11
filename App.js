@@ -1,20 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {useState} from "react";
+import {StyleSheet, SafeAreaView} from 'react-native';
+import HomeScreen from './src/screens/HomeScreen.js';
+import Menu from "./src/components/Menu";
 
 export default function App() {
+  const [active, setActive] = useState('home');
+  const Screen = {
+    home: HomeScreen,
+    create: HomeScreen,
+    loads: HomeScreen,
+  }[active];
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
+        <Screen/>
+        <Menu active={active} setActive={setActive}/>
+      </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F5F7FA',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
 });
