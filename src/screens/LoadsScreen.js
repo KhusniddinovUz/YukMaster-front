@@ -1,14 +1,14 @@
 import {View, Text, StyleSheet} from 'react-native';
 
-const HomeScreen = () => {
+const LoadsScreen = () => {
   return (
       <View>
-        <Text style={styles.title}>Asosiy Sahifa</Text>
+        <Text style={styles.title}>Yuklar ro'yxati</Text>
       </View>
-  )
+  );
 };
 
-export default HomeScreen;
+export default LoadsScreen;
 
 const styles = StyleSheet.create({
   title: {

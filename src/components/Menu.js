@@ -1,8 +1,11 @@
 import {ShadowBox} from 'react-native-neomorph-shadows';
-import {TouchableOpacity, Text, StyleSheet} from "react-native";
+import {TouchableOpacity, Text, StyleSheet, Dimensions} from "react-native";
 import {Ionicons, Entypo, MaterialCommunityIcons} from "@expo/vector-icons";
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
+const {width: SCREEN_WIDTH} = Dimensions.get("window");
 const Menu = ({active, setActive}) => {
+  const {bottom: bottomPadding} = useSafeAreaInsets();
   const menu = [
     {key: 'home', label: 'Asosiy', Icon: Entypo, name: 'home'},
     {key: 'create', label: 'Yaratish', Icon: Ionicons, name: 'add-circle'},
@@ -13,6 +16,34 @@ const Menu = ({active, setActive}) => {
       name: 'clipboard-text-search'
     },
   ];
+
+  const styles = StyleSheet.create({
+    menuItem: {
+      width: SCREEN_WIDTH * 0.33,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    menuContainer: {
+      shadowColor: "#000",
+      shadowOffset: {width: 5, height: 1},
+      shadowOpacity: 0.2,
+      shadowRadius: 10,
+      borderRadius: 50,
+      backgroundColor: '#fff',
+      height: 80 + bottomPadding,
+      width: SCREEN_WIDTH,
+      display: "flex",
+      justifyContent: 'space-evenly',
+      alignItems: 'center',
+      flexDirection: 'row',
+      paddingBottom: bottomPadding,
+    },
+    text: {
+      fontWeight: "bold",
+    }
+  })
+
   return (
       <ShadowBox style={styles.menuContainer}>
         {menu.map(({key, label, Icon, name}) => {
@@ -33,30 +64,3 @@ const Menu = ({active, setActive}) => {
   );
 };
 export default Menu;
-
-const styles = StyleSheet.create({
-  menuItem: {
-    width: "33%",
-    height: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  menuContainer: {
-    shadowColor: "#000",
-    shadowOffset: {width: 5, height: 1},
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
-    borderRadius: 20,
-    backgroundColor: '#fff',
-    width: "90%",
-    height: 80,
-    display: "flex",
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  text: {
-    fontWeight: "bold",
-  }
-})
